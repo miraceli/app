@@ -1,3 +1,6 @@
+<!-- Verificar este arquivo exemplo de uma página de consulta -->
+
+
 <?php
 
 include_once("conexao.php");
