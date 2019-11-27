@@ -38,9 +38,9 @@ DEFAULT charset=utf8;
 ---
 
 CREATE TABLE if not EXISTS salao (
-	id_salao int not null AUTO_INCREMENT,
+	id_salao int not null,
 	nome_salao varchar(80) not null,
-	documento_salao varchar(15) not null,
+	documento_salao varchar(20) not null,
 	endereco_salao varchar(100) not null,
 	telefone_salao varchar(15) not null,
 	email_salao varchar(80) not null,
@@ -50,5 +50,19 @@ DEFAULT charset=utf8;
 
 ---
 
+CREATE TABLE if not EXISTS administrador (
+	id_adm int not null,
+	nome_adm varchar(80) not null,
+	documento_adm varchar(10) not null,
+	telefone_adm varchar(15) not null,
+	email_adm varchar(80) not null,
+	PRIMARY KEY (id_adm)
+)
+DEFAULT charset=utf8;
+
+---
+
 insert into usuarios values (1, 'mira', '123456');
 insert into usuarios (user, senha) values ('romulo', '123456');
+
+insert into salao value (1, 'Revitalize Guaratuba', 'Sem doc', 'Rua Tibagi', '41997976730', 'revitalize.gtba@gmail.com')

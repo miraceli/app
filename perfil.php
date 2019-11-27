@@ -1,3 +1,18 @@
+<?php
+    include_once("conexao.php");
+
+    $sql1 = "select * from salao";
+    $consulta1 = mysqli_query($conexao, $sql1);
+    $registros1 = mysqli_num_rows($consulta1);
+
+    $sql2 = "select * from administrador";
+    $consulta2 = mysqli_query($conexao, $sql2);
+    $registros2 = mysqli_num_rows($consulta2);
+
+    $conexao->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,6 +50,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item active" href="#">Perfil</a>
                         <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/app/cadastro_usuario.php">Cadastrar usuário</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Sair</a>
                     </div>
                 </li>
@@ -47,38 +64,48 @@
             <div class="col-md-1"></div>
             <div class="card col-4">
                 <div class="card-body">
-                    Dados do Salão
+                    <strong>Dados do Salão</strong>
+                    <form method="post" action="salvar_salao.php" name="form">
 
-                    <form>
-                        <div class="form-group mb-2">
-                            <label for="staticEmail2" class="sr-only">Email</label>
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@exemplo.com">
+                        <div class="mt-2">
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="consultar nome do salão!">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="inputPassword2" class="sr-only">Senha</label>
-                            <input type="password" class="form-control" id="inputPassword2" placeholder="Senha">
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="Alterar nome do salao">
                         </div>
 
-                        <div class="form-group mb-2">
-                            <label for="staticEmail2" class="sr-only">Email</label>
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@exemplo.com">
+                        <div>
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="CPF/CNPJ do salão">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="inputPassword2" class="sr-only">Senha</label>
-                            <input type="password" class="form-control" id="inputPassword2" placeholder="Senha">
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="Alterar CPF/CNPJ do salao">
+                        </div>
+
+                        <div>
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Endereço do salão">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="staticEmail2" class="sr-only">Email</label>
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@exemplo.com">
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="Alterar endereço do salão">
+                        </div>
+
+                        <div>
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Telefone do salão">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="inputPassword2" class="sr-only">Senha</label>
-                            <input type="password" class="form-control" id="inputPassword2" placeholder="Senha">
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="Alterar telefone do salão">
                         </div>
+
+                        <div>
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="E-mail do salão">
+                        </div>
+                        <div class="form-group mb-2">
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="Alterar e-mail do salão">
+                        </div>
+
                         <div class="mt-5">
-                            <button type="submit" class="btn btn-primary mb-2">Salvar alterações</button>
+                            <button type="submit" class="btn btn-primary mb-2" value="Salvar">Salvar alterações</button>
                         </div>
-                        
+
                     </form>
 
 
@@ -87,38 +114,41 @@
             <div class="col-md-1"></div>
             <div class="card col-4">
                 <div class="card-body">
-                    Dados do Administrador
+                <strong>Dados do Administrador</strong>
+                    <form method="post" action="salvar_adm.php" name="form">
 
-                    <form>
-                        <div class="form-group mb-2">
-                            <label for="staticEmail2" class="sr-only">Email</label>
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@exemplo.com">
+                    <div class="mt-2">
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="consultar nome do administrador!">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="inputPassword2" class="sr-only">Senha</label>
-                            <input type="password" class="form-control" id="inputPassword2" placeholder="Senha">
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="Alterar nome do administrador">
                         </div>
 
-                        <div class="form-group mb-2">
-                            <label for="staticEmail2" class="sr-only">Email</label>
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@exemplo.com">
+                        <div>
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="CPF/CNPJ do administrador">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="inputPassword2" class="sr-only">Senha</label>
-                            <input type="password" class="form-control" id="inputPassword2" placeholder="Senha">
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="Alterar CPF/CNPJ do administrador">
                         </div>
 
-                        <div class="form-group mb-2">
-                            <label for="staticEmail2" class="sr-only">Email</label>
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="email@exemplo.com">
+                        <div>
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Telefone do administrador">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="inputPassword2" class="sr-only">Senha</label>
-                            <input type="password" class="form-control" id="inputPassword2" placeholder="Senha">
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="Alterar telefone do administrador">
                         </div>
+
+                        <div>
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="E-mail do administrador">
+                        </div>
+                        <div class="form-group mb-2">
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="Alterar e-mail do administrador">
+                        </div>
+
                         <div class="mt-5">
-                            <button type="submit" class="btn btn-primary mb-2">Salvar alterações</button>
+                            <button type="submit" class="btn btn-primary mb-2" value="Salvar">Salvar alterações</button>
                         </div>
+
                     </form>
 
 

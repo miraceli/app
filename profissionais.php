@@ -49,6 +49,9 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/app/perfil.php">Perfil</a>
             <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/app/cadastro_usuario.php">Cadastrar usuário</a>
+            
+            <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Sair</a>
             </div>
         </li>
