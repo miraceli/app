@@ -1,5 +1,30 @@
-<!DOCTYPE html>
+<?php
+  $id = "0";
+  $nome = "";
+  $descricao = "";
+  $preco = "";
+  $tempomedio = "";
+  if ( isset($_GET['id']) ) {
+    include_once("conexao.php");
+    $id = $_GET['id'];
+    $sql = "select * from servicos where id_servico = ?";
 
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i",intval($_GET['id']));
+    $stmt->execute();
+    $res = $stmt->get_result();
+    while( $row = $res->fetch_assoc() ) {
+      $nome = $row['nome_servico'];
+      $descricao = $row['descricao_servico'];
+      $preco = $row['preco_servico'];
+      $tempomedio = $row['tempomedio_servico'];
+    }
+    $conexao->close();
+  }
+
+?>
+
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -60,18 +85,18 @@
       <form method="post" action="salvar_servico.php" name="form"> <!-- Mudar action -->
         <fieldset>
           <legend>Preencha todos os campos</legend>
-
+          <input type="hidden" name="id_servico" value="<?php echo $id;?>"/>
           <label for="servico">Nome Servico</label><br />
-          <input class="campos" type="text" id="servico" maxlength="30" name="servico" placeholder="Serviço" required autofocus><br><br>
+          <input class="campos" type="text" id="servico" maxlength="30" name="servico" placeholder="Serviço" value="<?php echo $nome; ?>" required autofocus><br><br>
 
           <label for="descricao">Descrição</label><br />
-          <input class="campos" type="text" id="descricao" maxlength="100" name="descricao" placeholder="Descrição" required><br><br>
+          <input class="campos" type="text" id="descricao" maxlength="100" name="descricao" placeholder="Descrição" value="<?php echo $descricao; ?>" required><br><br>
          
           <label for="preco">Preço</label><br />
-          <input class="campos" type="text" id="preco" maxlength="10" name="preco" placeholder="R$ 00,00" required><br><br>
+          <input class="campos" type="text" id="preco" maxlength="10" name="preco" placeholder="R$ 00,00" value="<?php echo $preco; ?>" required><br><br>
           
           <label for="tempomedio">Tempo Médio</label><br />
-          <input class="campos" type="text" id="tempomedio" maxlength="10" name="tempomedio" placeholder="00h00" required><br><br>
+          <input class="campos" type="text" id="tempomedio" maxlength="10" name="tempomedio" placeholder="00h00" value="<?php echo $tempomedio; ?>" required><br><br>
 
         </fieldset>
 

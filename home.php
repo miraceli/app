@@ -47,7 +47,6 @@
                                   </a>
                                   <div class="dropdown-menu">
                                     <a class="dropdown-item" href="login.php">Administração</a>
-                                    <a class="dropdown-item" href="cadastro_usuario.php">Cadastrar</a>
                                   </div>
                                 </li>
                         </ul>

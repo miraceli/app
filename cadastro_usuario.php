@@ -35,7 +35,7 @@
   <div class="container">
     <nav>
       <ul class="menu">
-        <li><a href="login.php">Ir para login</a></li>
+        <li><a href="index.php">Voltar ao site</a></li>
       </ul>
     </nav>
 

@@ -1,7 +1,29 @@
+<?php
+  $id = "0";
+  $nome = "";
+  $email = "";
+  $telefone = "";
+  if ( isset($_GET['id']) ) {
+    include_once("conexao.php");
+    $id = $_GET['id'];
+    $sql = "select * from profissionais where id_profissional = ?";
+
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param("i",intval($_GET['id']));
+    $stmt->execute();
+    $res = $stmt->get_result();
+    while( $row = $res->fetch_assoc() ) {
+      $nome = $row['nome_profissional'];
+      $email = $row['email_profissional'];
+      $telefone = $row['telefone_profissional'];
+    }
+    $conexao->close();
+  }
+?>
+
+
 <!DOCTYPE html>
-
 <html>
-
 <head>
   <meta charset="utf-8" />
   <title>Cadastro Profissional</title>
@@ -53,15 +75,15 @@
       <form method="post" action="salvar_profissional.php" name="form"> <!-- Mudar action -->
         <fieldset>
           <legend>Preencha todos os campos</legend>
-
+          <input type="hidden" name="id_profissional" value="<?php echo $id; ?>"/>
           <label for="nome">Nome Profissional</label><br />
-          <input class="campos" type="text" id="nome" maxlength="60" name="nome" placeholder="Nome Completo" required autofocus><br><br>
+          <input class="campos" type="text" id="nome" maxlength="60" name="nome" value="<?php echo $nome; ?>" placeholder="Nome Completo" required autofocus><br><br>
 
           <label for="email">E-mail</label><br />
-          <input class="campos" type="text" id="email" maxlength="80" name="email" placeholder="E-mail" required><br><br>
+          <input class="campos" type="text" id="email" maxlength="80" name="email" value="<?php echo $email; ?>" placeholder="E-mail" required><br><br>
          
           <label for="telefone">Telefone</label><br />
-          <input class="campos" type="text" id="telefone" maxlength="15" name="telefone" placeholder="xxyyyyyyyyy" required><br><br>
+          <input class="campos" type="text" id="telefone" maxlength="15" name="telefone" value="<?php echo $telefone; ?>" placeholder="xxyyyyyyyyy" required><br><br>
           
     
         </fieldset>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home</title>
+    <script src="https://kit.fontawesome.com/57c22daf1a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -31,6 +32,8 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/app/perfil.php">Perfil</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/app/cadastro_usuario.php">Cadastrar usuário</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Sair</a>
             </div>

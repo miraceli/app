@@ -1,14 +1,17 @@
 <?php
 
 include_once("conexao.php");
-
+$id_servico = $_POST['id_servico'];
 $servico = $_POST['servico'];
 $descricao = $_POST['descricao'];
 $preco = $_POST['preco'];
 $tempomedio = $_POST['tempomedio'];
 
-
-$sql = "insert into servicos (nome_servico, descricao_servico, preco_servico, tempomedio_servico) values ('$servico','$descricao','$preco','$tempomedio')";
+if ($id_servico != "0") {
+  $sql = "update servicos set nome_servico = '$servico', descricao_servico = '$descricao', preco_servico = '$preco', tempomedio_servico = '$tempomedio' where id_servico = '$id_servico'";
+} else {
+  $sql = "insert into servicos (nome_servico, descricao_servico, preco_servico, tempomedio_servico) values ('$servico','$descricao','$preco','$tempomedio')";
+}
 $salvar = mysqli_query($conexao, $sql);
 
 $linhas = mysqli_affected_rows($conexao);

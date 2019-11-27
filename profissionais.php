@@ -1,3 +1,12 @@
+<?php
+    include_once("conexao.php");
+
+    $sql = "select * from profissionais;";
+    $consulta = mysqli_query($conexao, $sql);
+    $registros = mysqli_num_rows($consulta);
+    $conexao->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +15,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profissionais</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/57c22daf1a.js" crossorigin="anonymous" async defer></script>
 </head>
 <body>
+    <script>
+        function confirmarRemocao(id){
+            if ( confirm('Deseja realmente excluir este profissional?') ) {
+                location.assign('/app/remover_profissional.php?id='+id);
+            }
+        }
+    </script>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">LiLo</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,12 +63,12 @@
                     <div class="col-md-1">
                         <input class="btn btn-primary" type="button" value="Novo" onclick="javascript: location.href='cadastro_profissional.php';" />
                     </div>
-                    <div class="col-md-9">
+                    <!-- <div class="col-md-9">
                         <input type="text" class="form-control" placeholder="Buscar por nome...">
                     </div>
                     <div class="col-md-1">
                         <button class="btn btn-primary">Pesquisar</button>
-                    </div>
+                    </div> -->
                 </div>
                 <table class="table mt-2">
                     <thead>
@@ -63,25 +80,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Editar/Remover</td>
-                        </tr>
-                        <tr>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            <td>Editar/Remover</td>
-                        </tr>
-                        <tr>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            <td>Editar/Remover</td>
-                        </tr>
+                        <?php
+                            while ($row = mysqli_fetch_assoc($consulta)) {
+                                echo '<tr>'
+                                .'<td>'.$row['nome_profissional'].'</td>'
+                                    .'<td>'.$row['email_profissional'].'</td>'
+                                    .'<td>'.$row['telefone_profissional'].'</td>'
+                                    .'<td>'
+                                        .'<a title="Editar" href="/app/cadastro_profissional.php?id='.$row['id_profissional'].'"><i class="fas fa-pen"></i></a> '    
+                                        .'<a title="Remover" href="#" onclick="confirmarRemocao('.$row['id_profissional'].')"><i class="fas fa-trash-alt"></i></a>'
+                                    .'</td>'
+                                .'<tr>';
+                            }
+                        ?>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"></td>
+                            <td><?php echo $registros.' registro(s) encontrado(s)' ?></td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

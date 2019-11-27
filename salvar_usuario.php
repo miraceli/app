@@ -29,6 +29,7 @@ mysqli_close($conexao);
     <nav>
       <ul class="menu">
         <li><a href="cadastro_usuario.php">Cadastro de usuários</a></li>
+        <li><a href="index.php">Voltar ao site</a></li>
       </ul>
     </nav>
 
